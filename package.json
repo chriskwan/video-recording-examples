@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/chriskwan/video-recording-examples/issues"
   },
-  "homepage": "https://github.com/chriskwan/video-recording-examples#readme"
+  "homepage": "https://github.com/chriskwan/video-recording-examples#readme",
+  "dependencies": {
+    "msr": "^1.2.9"
+  }
 }
