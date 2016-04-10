@@ -5,9 +5,13 @@
 	var videoElement = document.getElementById("msrVideo");
 	var startButton = document.getElementById("startBtn");
 	var stopButton = document.getElementById("stopBtn");
+	var playButton = document.getElementById("playBtn");
+	var pauseButton = document.getElementById("pauseBtn");
 
 	startButton.onclick = startRecording;
 	stopButton.onclick = stopRecording;
+	playButton.onclick = playVideo;
+	pauseButton.onclick = pauseVideo;
 
 	var mediaConstraints = {
 		audio: true,
@@ -25,10 +29,8 @@
 			console.log("on data available");
 		};
 
+		// Show the stream shows up in the video element
 		videoElement.src = URL.createObjectURL(stream);
-		//videoElement.play(); //get a weird echo if it's playing at the same time
-
-		//multiStreamRecorder.start(3 * 1000);
 	}
 
 	function onMediaError(e) {
@@ -51,6 +53,16 @@
 		console.log("STOP recording");
 		multiStreamRecorder.stop();
 		console.log("Recording STOPPED");
+	}
+
+	function playVideo() {
+		//cwkTODO this doesn't quite work - it plays the stream
+		//need to change it to play the recorded video
+		videoElement.play();
+	}
+
+	function pauseVideo() {
+		videoElement.pause();
 	}
 
 })();
