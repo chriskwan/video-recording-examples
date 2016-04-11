@@ -8,7 +8,8 @@
 	var stopButton = document.getElementById("stopBtn");
 	var playButton = document.getElementById("playBtn");
 	var pauseButton = document.getElementById("pauseBtn");
-	var recordings = document.getElementById("recordings");
+	var videoRecordings = document.getElementById("videoRecordings");
+	var audioRecordings = document.getElementById("audioRecordings");
 
 	startButton.onclick = startRecording;
 	stopButton.onclick = stopRecording;
@@ -16,6 +17,7 @@
 	pauseButton.onclick = pauseVideo;
 
 	var videoNumber = 0;
+	var audioNumber = 0;
 
 	var mediaConstraints = {
 		audio: true,
@@ -39,10 +41,13 @@
 		console.log("ON DATA AVAILABLE");
 
 		videoNumber++;
-		makeLink(blobs.video, videoNumber);
+		makeLink(videoRecordings, blobs.video, videoNumber);
+
+		audioNumber++;
+		makeLink(audioRecordings, blobs.audio, audioNumber);
 	}
 
-	function makeLink(blob, number) {
+	function makeLink(container, blob, number) {
 		var li = document.createElement('li');
 
 		// Ref: https://www.webrtc-experiment.com/msr/MultiStreamRecorder.html
@@ -55,7 +60,7 @@
 		a.href = URL.createObjectURL(blob);
 
 		li.appendChild(a);
-		recordings.appendChild(li);
+		container.appendChild(li);
 	}
 
 	function onMediaError(e) {
