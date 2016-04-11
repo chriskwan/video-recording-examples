@@ -27,13 +27,15 @@
 		multiStreamRecorder.video = videoElement;
 		multiStreamRecorder.audioChannels = 1;
 		
-		multiStreamRecorder.ondataavailable = function (blobs) {
-			console.log("ON DATA AVAILABLE");
-			makeLink(blobs.video);
-		};
+		multiStreamRecorder.ondataavailable = onMediaDataAvailable;
 
 		// Show the stream shows up in the video element
 		videoElement.src = URL.createObjectURL(stream);
+	}
+
+	function onMediaDataAvailable(blobs) {
+		console.log("ON DATA AVAILABLE");
+		makeLink(blobs.video);
 	}
 
 	function makeLink(blob) {
