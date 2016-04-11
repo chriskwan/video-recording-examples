@@ -39,6 +39,8 @@
 	}
 
 	function makeLink(blob) {
+		var li = document.createElement('li');
+
 		// Ref: https://www.webrtc-experiment.com/msr/MultiStreamRecorder.html
 		var a = document.createElement('a');
 		a.target = "_blank";
@@ -46,7 +48,8 @@
 		
 		a.href = URL.createObjectURL(blob);
 
-		recordings.appendChild(a);
+		li.appendChild(a);
+		recordings.appendChild(li);
 	}
 
 	function onMediaError(e) {
