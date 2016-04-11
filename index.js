@@ -15,6 +15,8 @@
 	playButton.onclick = playVideo;
 	pauseButton.onclick = pauseVideo;
 
+	var videoNumber = 0;
+
 	var mediaConstraints = {
 		audio: true,
 		video: true
@@ -35,16 +37,20 @@
 
 	function onMediaDataAvailable(blobs) {
 		console.log("ON DATA AVAILABLE");
-		makeLink(blobs.video);
+
+		videoNumber++;
+		makeLink(blobs.video, videoNumber);
 	}
 
-	function makeLink(blob) {
+	function makeLink(blob, number) {
 		var li = document.createElement('li');
 
 		// Ref: https://www.webrtc-experiment.com/msr/MultiStreamRecorder.html
 		var a = document.createElement('a');
 		a.target = "_blank";
-		a.innerHTML = "Open Video Recording"; //cwkTODO add number, size, time
+
+		var size = bytesToSize(blob.size);
+		a.innerHTML = "Recording #" + number + " (" + size + ")"; //cwkTODO add time
 		
 		a.href = URL.createObjectURL(blob);
 
