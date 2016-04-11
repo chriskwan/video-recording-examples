@@ -4,6 +4,7 @@
 (function() {
 	var multiStreamRecorder;
 	var videoElement = document.getElementById("msrVideo");
+	var setupButton = document.getElementById("setupBtn")
 	var startButton = document.getElementById("startBtn");
 	var stopButton = document.getElementById("stopBtn");
 	var playButton = document.getElementById("playBtn");
@@ -11,6 +12,7 @@
 	var videoRecordings = document.getElementById("videoRecordings");
 	var audioRecordings = document.getElementById("audioRecordings");
 
+	setupButton.onclick = setup;
 	startButton.onclick = startRecording;
 	stopButton.onclick = stopRecording;
 	playButton.onclick = playVideo;
@@ -24,7 +26,9 @@
 		video: true
 	};
 
-	navigator.getUserMedia(mediaConstraints, onMediaSuccess, onMediaError);
+	function setup() {
+		navigator.getUserMedia(mediaConstraints, onMediaSuccess, onMediaError);
+	}
 
 	function onMediaSuccess(stream) {
 		multiStreamRecorder = new MultiStreamRecorder(stream);
